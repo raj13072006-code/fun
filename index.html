@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #1a1020;
+    --surface:  #201528;
+    --raised:   #241830;
+    --shadow-d: #110b16;
+    --shadow-l: #2e1f3e;
+    --rose:     #e8789a;
+    --blush:    #f2a4bc;
+    --mauve:    #c97fa8;
+    --gold:     #f0c87a;
+    --text:     #f0dde8;
+    --muted:    #9e7fa0;
+    --glow:     rgba(232, 120, 154, 0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .petals { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .petal {
+    position: absolute; top: -60px; opacity: 0;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(400deg) scale(0.5); opacity: 0; }
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    max-width: 580px; margin: 0 auto;
+    padding: 56px 20px 80px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+
+  .neu {
+    background: var(--surface); border-radius: 24px;
+    box-shadow: 8px 8px 20px var(--shadow-d), -6px -6px 16px var(--shadow-l);
+    padding: 32px 28px;
+  }
+  .neu-inset {
+    background: var(--raised); border-radius: 14px;
+    box-shadow: inset 4px 4px 10px var(--shadow-d), inset -3px -3px 8px var(--shadow-l);
+    padding: 18px 20px;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center; padding: 44px 24px 36px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--mauve); margin-bottom: 14px;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 15vw, 5rem);
+    font-weight: 300; font-style: italic;
+    background: linear-gradient(135deg, var(--rose) 20%, var(--blush) 60%, var(--gold) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1.05;
+  }
+  .hero-emoji-row { margin-top: 18px; display: flex; justify-content: center; gap: 10px; }
+  .hero-emoji-row span { font-size: 1.5rem; display: inline-block; animation: bounce 2s ease-in-out infinite; }
+  .hero-emoji-row span:nth-child(2) { animation-delay: 0.2s; }
+  .hero-emoji-row span:nth-child(3) { animation-delay: 0.4s; }
+  .hero-emoji-row span:nth-child(4) { animation-delay: 0.6s; }
+  .hero-emoji-row span:nth-child(5) { animation-delay: 0.8s; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    40%       { transform: translateY(-8px); }
+    60%       { transform: translateY(-4px); }
+  }
+
+  .label {
+    font-size: 0.66rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--mauve); margin-bottom: 14px;
+  }
+
+  .message-body { font-size: 0.95rem; line-height: 1.85; color: var(--text); opacity: 0.9; }
+  .message-sig {
+    margin-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1.05rem; color: var(--rose);
+  }
+
+  /* Questions */
+  .questions-intro { text-align: center; margin-bottom: 22px; }
+  .questions-intro .big-emoji {
+    font-size: 2.4rem; display: block; margin-bottom: 8px;
+    animation: wiggle 2.5s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    20%       { transform: rotate(-8deg); }
+    40%       { transform: rotate(8deg); }
+    60%       { transform: rotate(-4deg); }
+    80%       { transform: rotate(4deg); }
+  }
+  .questions-intro h2 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.4rem; color: var(--blush); font-weight: 300; margin-bottom: 6px;
+  }
+  .questions-intro p { font-size: 0.82rem; color: var(--muted); }
+
+  .q-item { margin-bottom: 20px; }
+  .q-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.88rem; color: var(--blush); margin-bottom: 10px; font-weight: 400;
+  }
+  .q-label .q-num {
+    font-size: 0.65rem;
+    background: linear-gradient(135deg, var(--rose), var(--mauve));
+    color: white; border-radius: 50%; width: 18px; height: 18px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 500; flex-shrink: 0;
+  }
+
+  textarea {
+    width: 100%; background: var(--raised); border: none;
+    border-radius: 14px;
+    box-shadow: inset 4px 4px 10px var(--shadow-d), inset -3px -3px 8px var(--shadow-l);
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 300; line-height: 1.6;
+    padding: 14px 16px; resize: none; outline: none;
+    transition: box-shadow 0.2s; min-height: 80px;
+  }
+  textarea::placeholder { color: var(--muted); opacity: 0.7; }
+  textarea:focus {
+    box-shadow: inset 4px 4px 10px var(--shadow-d), inset -3px -3px 8px var(--shadow-l),
+      0 0 0 1.5px rgba(232,120,154,0.35);
+  }
+
+  /* Preview button */
+  .btn-preview {
+    width: 100%; padding: 15px 24px; border: none; border-radius: 16px;
+    background: linear-gradient(135deg, var(--rose), var(--mauve));
+    color: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 5px 5px 14px var(--shadow-d), -4px -4px 10px var(--shadow-l),
+      0 0 22px var(--glow);
+    transition: all 0.2s ease; position: relative; overflow: hidden;
+  }
+  .btn-preview:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-preview:active { transform: scale(0.97); }
+
+  /* ── Preview card ── */
+  #previewCard {
+    display: none;
+    flex-direction: column; gap: 16px;
+    animation: fadeSlideUp 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #previewCard.visible { display: flex; }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .preview-header {
+    text-align: center; margin-bottom: 4px;
+  }
+  .preview-header .preview-emoji {
+    font-size: 2rem; display: block; margin-bottom: 6px;
+  }
+  .preview-header h3 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.3rem; color: var(--blush); font-weight: 300;
+  }
+  .preview-header p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  .preview-q {
+    background: var(--raised); border-radius: 16px;
+    box-shadow: 4px 4px 12px var(--shadow-d), -3px -3px 8px var(--shadow-l);
+    padding: 16px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .preview-q:hover {
+    box-shadow: 6px 6px 16px var(--shadow-d), -4px -4px 10px var(--shadow-l),
+      0 0 16px var(--glow);
+  }
+  .preview-q-label {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mauve); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .preview-q-label .pq-num {
+    background: linear-gradient(135deg, var(--rose), var(--mauve));
+    color: white; border-radius: 50%; width: 16px; height: 16px;
+    font-size: 0.6rem; display: inline-flex; align-items: center;
+    justify-content: center; font-weight: 600; flex-shrink: 0;
+  }
+
+  /* Editable answer inside preview */
+  .preview-answer {
+    font-size: 0.92rem; line-height: 1.7; color: var(--text);
+    background: var(--surface); border: none; border-radius: 10px;
+    box-shadow: inset 3px 3px 8px var(--shadow-d), inset -2px -2px 6px var(--shadow-l);
+    padding: 12px 14px; width: 100%; resize: none; outline: none;
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+    min-height: 60px; transition: box-shadow 0.2s;
+  }
+  .preview-answer:focus {
+    box-shadow: inset 3px 3px 8px var(--shadow-d), inset -2px -2px 6px var(--shadow-l),
+      0 0 0 1.5px rgba(232,120,154,0.4);
+  }
+  .edit-hint {
+    font-size: 0.68rem; color: var(--muted); margin-top: 6px;
+    display: flex; align-items: center; gap: 4px; opacity: 0.7;
+  }
+
+  /* Send & back buttons */
+  .action-row { display: flex; gap: 12px; margin-top: 4px; }
+  .btn-back {
+    flex: 0 0 auto; padding: 15px 20px; border: none; border-radius: 16px;
+    background: var(--surface); color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; cursor: pointer;
+    box-shadow: 5px 5px 12px var(--shadow-d), -4px -4px 10px var(--shadow-l);
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .btn-back:hover { color: var(--text); }
+  .btn-back:active { transform: scale(0.97); box-shadow: inset 3px 3px 8px var(--shadow-d), inset -2px -2px 6px var(--shadow-l); }
+
+  .btn-send {
+    flex: 1; padding: 15px 20px; border: none; border-radius: 16px;
+    background: linear-gradient(135deg, #25d366 0%, #128c5e 100%);
+    color: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 5px 5px 14px var(--shadow-d), -4px -4px 10px var(--shadow-l),
+      0 0 22px rgba(37,211,102,0.25);
+    transition: all 0.2s ease; position: relative; overflow: hidden;
+  }
+  .btn-send:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-send:active { transform: scale(0.97); }
+  .send-note { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 4px; }
+
+  /* Ripple */
+  .ripple {
+    position: absolute; border-radius: 50%; transform: scale(0);
+    background: rgba(255,255,255,0.25);
+    animation: ripple-anim 0.55s linear; pointer-events: none;
+  }
+  @keyframes ripple-anim { to { transform: scale(5); opacity: 0; } }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--raised);
+    border: 1px solid rgba(37,211,102,0.25);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 20px rgba(37,211,102,0.2);
+    color: var(--text); padding: 14px 24px; border-radius: 50px;
+    font-size: 0.88rem; white-space: nowrap; z-index: 100;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s;
+    opacity: 0; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  .divider { text-align: center; font-size: 0.7rem; letter-spacing: 0.5em; color: var(--mauve); opacity: 0.4; }
+  .footer { text-align: center; font-size: 0.74rem; color: var(--muted); padding-top: 8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .petal, .hero-emoji-row span, .questions-intro .big-emoji { animation: none; }
+    #previewCard { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+<div class="toast" id="toast"></div>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="neu hero">
+    <h1 class="hero-name">Angie</h1>
+    <div class="hero-emoji-row">
+      <span>🌸</span><span>💖</span><span>✨</span><span>🌷</span><span>💫</span>
+    </div>
+  </div>
+
+  <!-- From the heart -->
+  <div class="neu">
+    <p class="label">from the heart 💌</p>
+    <div class="neu-inset">
+      <p class="message-body">
+        Heyy...mambo😌 Nimekaa nikaona why not prepare this for you. I have grown fond of you lately😹. If you may, you can answer the questions ziko hapo chini then send the answers.
+        <br><br>Have a nice day🥰
+      </p>
+      <p class="message-sig">— always yours ♡</p>
+    </div>
+  </div>
+
+  <!-- Questions -->
+  <div class="neu" id="questionsSection">
+    <div class="questions-intro">
+      <span class="big-emoji">💬</span>
+      <h2>🤭</h2>
+      <p>Utatype hapo then send😄</p>
+    </div>
+
+    <div id="questionsForm">
+      <div class="q-item">
+        <div class="q-label">
+          <span class="q-num">1</span>
+          <span>💛 What's your favourite thing about our friendship?</span>
+        </div>
+        <textarea id="a1" placeholder="tell me everything…" rows="3"></textarea>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">
+          <span class="q-num">2</span>
+          <span>🌸 What do you love most about us as besties?</span>
+        </div>
+        <textarea id="a2" placeholder="don't hold back 😊" rows="3"></textarea>
+      </div>
+
+
+      <div class="q-item" style="margin-bottom:24px">
+        <div class="q-label">
+          <span class="q-num">3</span>
+          <span>✨ What would you want us to do more of together?</span>
+        </div>
+        <textarea id="a4" placeholder="dream big bestie 🌟" rows="3"></textarea>
+      </div>
+
+      <button class="btn-preview" id="previewBtn" onclick="showPreview(event)">
+        <span>👀</span> Preview my answers
+      </button>
+    </div>
+
+    <!-- Preview section -->
+    <div id="previewCard">
+      <div class="preview-header">
+        <span class="preview-emoji">✨</span>
+        <h3>Here's what you're sending!</h3>
+        <p>Edit anything below if you want — then hit send 💌</p>
+      </div>
+
+      <div class="preview-q">
+        <div class="preview-q-label"><span class="pq-num">1</span> 💛 Favourite thing about our friendship</div>
+        <textarea class="preview-answer" id="p1" rows="3"></textarea>
+        <p class="edit-hint">✏️ tap to edit</p>
+      </div>
+
+      <div class="preview-q">
+        <div class="preview-q-label"><span class="pq-num">2</span> 🌸 What you love most about us</div>
+        <textarea class="preview-answer" id="p2" rows="3"></textarea>
+        <p class="edit-hint">✏️ tap to edit</p>
+      </div>
+
+      <div class="preview-q">
+        <div class="preview-q-label"><span class="pq-num">3</span> ✨ What we should do more of</div>
+        <textarea class="preview-answer" id="p4" rows="3"></textarea>
+        <p class="edit-hint">✏️ tap to edit</p>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-back" onclick="goBack(event)">← Edit</button>
+        <button class="btn-send" id="sendBtn" onclick="sendToWhatsApp(event)">
+          <span>💬</span> Send on WhatsApp
+        </button>
+      </div>
+      <p class="send-note">✦ your answers go straight to my WhatsApp ✦</p>
+    </div>
+  </div>
+
+  <div class="divider">✦ ✦ ✦</div>
+  <div class="footer">made with so much love 🌸</div>
+
+</div>
+
+<script>
+  // Petals
+  const petalEl = document.getElementById('petals');
+  const symbols = ['🌸','🌷','✿','❀','✦','🌺','💕','⭐'];
+  function createPetal(fromBurst = false) {
+    const p = document.createElement('span');
+    p.classList.add('petal');
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    const dur = (fromBurst ? 2 : 8) + Math.random() * (fromBurst ? 2 : 7);
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = (fromBurst ? 0 : Math.random() * 8) + 's';
+    p.style.fontSize = (0.75 + Math.random() * 0.9) + 'rem';
+    petalEl.appendChild(p);
+    setTimeout(() => p.remove(), (dur + 2) * 1000);
+  }
+  for (let i = 0; i < 16; i++) createPetal(false);
+  setInterval(() => createPetal(false), 2000);
+
+  // Ripple
+  function ripple(btn, e) {
+    const r = document.createElement('span');
+    r.classList.add('ripple');
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.width = r.style.height = size + 'px';
+    r.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    r.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+    btn.appendChild(r);
+    r.addEventListener('animationend', () => r.remove());
+  }
+
+  // Toast
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // Show preview
+  function showPreview(e) {
+    ripple(document.getElementById('previewBtn'), e);
+
+    const a1 = document.getElementById('a1').value.trim();
+    const a2 = document.getElementById('a2').value.trim();
+    const a3 = document.getElementById('a3').value.trim();
+    const a4 = document.getElementById('a4').value.trim();
+
+    if (!a1 && !a2 && !a3 && !a4) {
+      showToast('✏️ Answer at least one question🤭');
+      return;
+    }
+
+    // Copy answers into preview editable fields
+    document.getElementById('p1').value = a1;
+    document.getElementById('p2').value = a2;
+    document.getElementById('p3').value = a3;
+    document.getElementById('p4').value = a4;
+
+    // Hide form, show preview
+    document.getElementById('questionsForm').style.display = 'none';
+    const card = document.getElementById('previewCard');
+    card.classList.add('visible');
+
+    // Scroll to preview
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+
+  // Go back to edit
+  function goBack(e) {
+    ripple(e.currentTarget, e);
+
+    // Copy preview edits back into original textareas
+    document.getElementById('a1').value = document.getElementById('p1').value;
+    document.getElementById('a2').value = document.getElementById('p2').value;
+    document.getElementById('a3').value = document.getElementById('p3').value;
+    document.getElementById('a4').value = document.getElementById('p4').value;
+
+    document.getElementById('previewCard').classList.remove('visible');
+    document.getElementById('questionsForm').style.display = 'block';
+    setTimeout(() => document.getElementById('questionsForm').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+
+  // Send to WhatsApp
+  function sendToWhatsApp(e) {
+    const btn = document.getElementById('sendBtn');
+    ripple(btn, e);
+
+    const a1 = document.getElementById('p1').value.trim();
+    const a2 = document.getElementById('p2').value.trim();
+    const a3 = document.getElementById('p3').value.trim();
+    const a4 = document.getElementById('p4').value.trim();
+
+    const lines = [
+      '🌸✨ *Angie\'s Bestie Answers* ✨🌸',
+      '',
+      '💛 *Favourite thing about our friendship?*',
+      a1 || '_(left blank)_',
+      '',
+      '🌸 *What she loves most about us as besties?*',
+      a2 || '_(left blank)_',
+      '',
+      '✨ *What we should do more of together?*',
+      a3 || '_(left blank)_',
+      '',
+      '— sent with love from Angie\'s page 🌷',
+    ];
+
+    const msg = encodeURIComponent(lines.join('\n'));
+    const phone = '254755893603';
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    showToast('💬 Opening WhatsApp… sending your love!');
+    for (let i = 0; i < 20; i++) setTimeout(() => createPetal(true), i * 70);
+  }
+</script>
+</body>
+</html>
+
